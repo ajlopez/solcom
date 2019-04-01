@@ -22,8 +22,8 @@
     "test": "simpleunit ./test -r"
   },
   "dependencies": {
-    "evmcompiler": "0.0.1",
-    "geast": "0.0.6",
+    "evmcompiler": "0.0.2",
+    "geast": "0.0.7",
     "gelex": "0.0.4",
     "gepars": "0.0.4"
   },
