@@ -12,6 +12,10 @@ Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP.
 - `string`
 - `address`
 
+## Previous Work
+
+- [SolidityCompiler](https://github.com/ajlopez/SolidityCompiler) compiles to Java, C#.
+
 ## References
 
 TBD
