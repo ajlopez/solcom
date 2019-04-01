@@ -9,6 +9,7 @@ Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP.
 - `int`
 - `uint`
 - `bool`
+- `string`
 - `address`
 
 ## References
