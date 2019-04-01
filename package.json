@@ -1,0 +1,33 @@
+{
+  "name": "solcom",
+  "description": "Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP",
+  "keywords": [
+    "ethereum",
+    "solidity",
+    "smartcontract",
+    "programming",
+    "compiler"
+  ],
+  "version": "0.0.1alpha",
+  "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ajlopez/solcom.git"
+  },
+  "main": "./lib/solcom.js",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "scripts": {
+    "test": "simpleunit ./test -r"
+  },
+  "dependencies": {
+    "evmcompiler": "0.0.1",
+    "geast": "0.0.6",
+    "gelex": "0.0.4",
+    "gepars": "0.0.4"
+  },
+  "devDependencies": {
+    "simpleunit": "0.0.8"
+  }
+}
