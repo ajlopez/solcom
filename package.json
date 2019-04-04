@@ -22,10 +22,10 @@
     "test": "simpleunit ./test -r"
   },
   "dependencies": {
-    "evmcompiler": "0.0.2",
+    "evmcompiler": "0.0.5",
     "geast": "0.0.7",
     "gelex": "0.0.4",
-    "gepars": "0.0.4"
+    "gepars": "0.0.5"
   },
   "devDependencies": {
     "simpleunit": "0.0.8"
