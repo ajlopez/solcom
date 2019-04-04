@@ -35,6 +35,7 @@ exports['parse divide'] = function (test) {
 
 exports['parse binary operations in parentheses'] = function (test) {
     parseBinary(test, '(42 + 0)', [ 42, '+', 0 ] );
+    parseBinary(test, '(42 + 1) * 2', [ [ 42, '+', 1 ], '*', 2 ] );
     parseBinary(test, '(1 - 2)', [ 1, '-', 2 ]);
     parseBinary(test, '(42 * foo)', [ 42, '*', 'foo' ]);
     parseBinary(test, '(foo / 42)', [ 'foo', '/', 42 ]);
