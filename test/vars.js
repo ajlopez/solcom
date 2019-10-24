@@ -1,5 +1,6 @@
 
 const parser = require('../lib/parser');
+const geast = require('geast');
 
 exports['parse uint variable declaration'] = function (test) {
     const result = parser.parse('command', 'uint counter;');
@@ -53,7 +54,6 @@ exports['parse uint dynamic array variable declaration'] = function (test) {
         name: 'counter',
         type: {
             ntype: 'array',
-            length: null,
             type: 'uint'
         }
     });
@@ -67,7 +67,10 @@ exports['parse uint fixed size array variable declaration'] = function (test) {
         name: 'counter',
         type: {
             ntype: 'array',
-            length: 10,
+            length: {
+                ntype: 'constant',
+                value: 10
+            },
             type: 'uint'
         }
     });
@@ -94,20 +97,5 @@ exports['parse address variable declaration'] = function (test) {
 };
 
 function match(test, node, obj) {
-    if (node === obj)
-        return;
-    
-    test.ok(node);
-    
-    for (var n in obj) {
-        test.ok(node[n]);
-        test.equal(typeof node[n], 'function');
-        const value = node[n]();
-        const expected = obj[n];
-        
-        if (value != null && typeof value === 'object')
-            match(test, value, expected);
-        else
-            test.strictEqual(value, expected);
-    }
+    test.deepEqual(geast.toObject(node), obj);
 }
