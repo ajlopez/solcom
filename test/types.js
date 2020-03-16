@@ -7,6 +7,11 @@ exports['parse uint type'] = function (test) {
     test.equal(result, 'uint');
 };
 
+exports['parse uint types'] = function (test) {
+    for (let k = 8; k <= 256; k += 8)
+        test.equal(parser.parse('type', 'uint' + k), 'uint' + k);
+};
+
 exports['parse int type'] = function (test) {
     const result = parser.parse('type', 'int');
 
