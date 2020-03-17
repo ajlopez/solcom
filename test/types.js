@@ -18,6 +18,11 @@ exports['parse int type'] = function (test) {
     test.equal(result, 'int');
 };
 
+exports['parse int types'] = function (test) {
+    for (let k = 8; k <= 256; k += 8)
+        test.equal(parser.parse('type', 'int' + k), 'int' + k);
+};
+
 exports['parse bool type'] = function (test) {
     const result = parser.parse('type', 'bool');
 
