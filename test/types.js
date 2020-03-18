@@ -40,3 +40,15 @@ exports['parse string type'] = function (test) {
 
     test.equal(result, 'string');
 };
+
+exports['parse byte type'] = function (test) {
+    const result = parser.parse('type', 'byte');
+
+    test.equal(result, 'byte');
+};
+
+exports['parse bytes types'] = function (test) {
+    for (let k = 1; k <= 32; k++)
+        test.equal(parser.parse('type', 'bytes' + k), 'bytes' + k);
+};
+
