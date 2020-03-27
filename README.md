@@ -18,7 +18,7 @@ Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP.
 
 ## References
 
-TBD
+- [Solidity Debugger List](http://solidity-debugger.io/#/)
 
 ## To Do
 
