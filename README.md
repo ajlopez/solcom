@@ -24,6 +24,8 @@ Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP.
 - [A brief analysis of the new try/catch functionality in Solidity 0.6](https://forum.openzeppelin.com/t/a-brief-analysis-of-the-new-try-catch-functionality-in-solidity-0-6/2564)
 - [Solidity 0.6: You Might Be Sending Ether Incorrectly](https://medium.com/better-programming/solidity-0-6-you-might-be-sending-ether-all-wrong-1e119e1ffc27)
 - [`external` vs `public` best practices](https://ethereum.stackexchange.com/questions/19380/external-vs-public-best-practices)
+- [Arrays and Maps in Solidity](https://medium.com/coinmonks/array-and-map-in-solidity-a579b311d74b)
+
 
 ## To Do
 
