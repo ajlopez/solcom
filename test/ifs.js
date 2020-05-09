@@ -41,9 +41,10 @@ exports['parse if with then and else'] = function (test) {
 function match(test, node, obj) {
     test.ok(node);
     
-    for (var n in obj) {
+    for (let n in obj) {
         test.ok(node[n]);
         test.equal(typeof node[n], 'function');
+        
         const value = node[n]();
         const expected = obj[n];
         
