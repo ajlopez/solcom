@@ -1,10 +1,11 @@
 
 const parser = require('../lib/parser');
+const geast = require('geast');
 
 exports['parse if with then'] = function (test) {
     const result = parser.parse('command', 'if (b) c;');
-    
-    match(test, result, {
+
+    test.deepEqual(geast.toObject(result), {
         ntype: 'conditional',
         condition: {
             ntype: 'name',
@@ -13,15 +14,14 @@ exports['parse if with then'] = function (test) {
         then: {
             ntype: 'name',
             name: 'c'
-        },
-        else: null
+        }
     });
 };
 
 exports['parse if with then and else'] = function (test) {
     const result = parser.parse('command', 'if (b) c; else d;');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'conditional',
         condition: {
             ntype: 'name',
@@ -38,19 +38,3 @@ exports['parse if with then and else'] = function (test) {
     });
 };
 
-function match(test, node, obj) {
-    test.ok(node);
-    
-    for (let n in obj) {
-        test.ok(node[n]);
-        test.equal(typeof node[n], 'function');
-        
-        const value = node[n]();
-        const expected = obj[n];
-        
-        if (value != null && typeof value === 'object')
-            match(test, value, expected);
-        else
-            test.strictEqual(value, expected);
-    }
-}
