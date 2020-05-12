@@ -1,10 +1,11 @@
 
 const parser = require('../lib/parser');
+const geast = require('geast');
 
 exports['parse program with empty contract'] = function (test) {
     const result = parser.parse('program', 'contract Empty {}');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'sequence',
         nodes: [
             {
@@ -22,7 +23,7 @@ exports['parse program with empty contract'] = function (test) {
 exports['parse program with two contracts'] = function (test) {
     const result = parser.parse('program', 'contract Empty1 {} contract Empty2 {}');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'sequence',
         nodes: [
             {
@@ -48,7 +49,7 @@ exports['parse program with two contracts'] = function (test) {
 exports['parse program with contract with variable declaration'] = function (test) {
     const result = parser.parse('program', 'contract Counter { uint counter; }');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'sequence',
         nodes: [
             {
@@ -68,26 +69,4 @@ exports['parse program with contract with variable declaration'] = function (tes
         ]
     });
 };
-
-function match(test, node, obj) {
-    test.ok(node);
-    
-    for (let n in obj) {
-        test.ok(node[n]);
-        
-        let value;
-        
-        if (typeof node[n] === 'function')
-            value = node[n]();
-        else
-            value = node[n];
-        
-        const expected = obj[n];
-        
-        if (value != null && typeof value === 'object')
-            match(test, value, expected);
-        else
-            test.strictEqual(value, expected);
-    }
-}
 
