@@ -1,10 +1,11 @@
 
 const parser = require('../lib/parser');
+const geast = require('geast');
 
 exports['parse while'] = function (test) {
     const result = parser.parse('command', 'while (b) c;');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'loop',
         condition: {
             ntype: 'name',
@@ -20,7 +21,7 @@ exports['parse while'] = function (test) {
 exports['parse while with composite command'] = function (test) {
     const result = parser.parse('command', 'while (b) { c; d; }');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'loop',
         condition: {
             ntype: 'name',
@@ -42,24 +43,3 @@ exports['parse while with composite command'] = function (test) {
     });
 };
 
-function match(test, node, obj) {
-    test.ok(node);
-    
-    for (let n in obj) {
-        test.ok(node[n]);
-        
-        let value;
-        
-        if (typeof node[n] === 'function')
-            value = node[n]();
-        else
-            value = node[n];
-        
-        const expected = obj[n];
-        
-        if (value != null && typeof value === 'object')
-            match(test, value, expected);
-        else
-            test.strictEqual(value, expected);
-    }
-}
