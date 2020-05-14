@@ -1,13 +1,13 @@
 
 const parser = require('../lib/parser');
+const geast = require('geast');
 
-exports['parse empty public void method'] = function (test) {
+exports['parse empty void method'] = function (test) {
     const result = parser.parse('method', 'function foo() {}');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        visibility: null,
-        type: 'void',
+        name: 'foo',
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -19,10 +19,10 @@ exports['parse empty public void method'] = function (test) {
 exports['parse empty public void method'] = function (test) {
     const result = parser.parse('method', 'function foo() public {}');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         visibility: 'public',
-        type: 'void',
+        name: 'foo',
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -34,10 +34,10 @@ exports['parse empty public void method'] = function (test) {
 exports['parse empty private void method'] = function (test) {
     const result = parser.parse('method', 'function foo() private {}');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
+        name: 'foo',
         visibility: 'private',
-        type: 'void',
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -49,10 +49,11 @@ exports['parse empty private void method'] = function (test) {
 exports['parse empty explicit private uint method'] = function (test) {
     const result = parser.parse('method', 'function foo() private returns(uint) {}');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         visibility: 'private',
         type: 'uint',
+        name: 'foo',
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -64,9 +65,9 @@ exports['parse empty explicit private uint method'] = function (test) {
 exports['parse implicit public uint method'] = function (test) {
     const result = parser.parse('method', 'function foo() returns (uint) { return 42; }');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        visibility: null,
+        name: 'foo',
         type: 'uint',
         arguments: [],
         body: {
@@ -87,10 +88,9 @@ exports['parse implicit public uint method'] = function (test) {
 exports['parse increment method'] = function (test) {
     const result = parser.parse('method', 'function increment() { counter = counter + 1; }');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        visibility: null,
-        type: 'void',
+        name: 'increment',
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -122,10 +122,10 @@ exports['parse increment method'] = function (test) {
 exports['parse add method with one argument'] = function (test) {
     const result = parser.parse('method', 'function add(uint value) public { counter = counter + value; }');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         visibility: 'public',
-        type: 'void',
+        name: 'add',
         arguments: [
             {
                 ntype: 'argument',
@@ -163,10 +163,10 @@ exports['parse add method with one argument'] = function (test) {
 exports['parse add method with two arguments'] = function (test) {
     const result = parser.parse('method', 'function add(uint value, uint value2) public { counter = counter + value; }');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         visibility: 'public',
-        type: 'void',
+        name: 'add',
         arguments: [
             {
                 ntype: 'argument',
@@ -209,11 +209,10 @@ exports['parse add method with two arguments'] = function (test) {
 exports['parse method with local variable'] = function (test) {
     const result = parser.parse('method', 'function foo() public { uint k; }');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
         visibility: 'public',
-        type: 'void',
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -221,7 +220,7 @@ exports['parse method with local variable'] = function (test) {
                 {
                     ntype: 'variable',
                     name: 'k',
-                    expression: null
+                    type: 'uint'
                 }
             ]
         }
@@ -231,11 +230,10 @@ exports['parse method with local variable'] = function (test) {
 exports['parse method with initialized local variable'] = function (test) {
     const result = parser.parse('method', 'function foo() public { uint k = 1; }');
     
-    match(test, result, {
+    test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
         visibility: 'public',
-        type: 'void',
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -243,38 +241,14 @@ exports['parse method with initialized local variable'] = function (test) {
                 {
                     ntype: 'variable',
                     name: 'k',
+                    type: 'uint',
                     expression: {
                         ntype: 'constant',
-                        value: 42
+                        value: 1
                     }
                 }
             ]
         }
     });
 };
-
-function match(test, node, obj) {
-    test.ok(node);
-    
-    for (var n in obj) {
-        test.ok(node[n]);
-        
-        let value;
-        
-        if (typeof node[n] === 'function')
-            value = node[n]();
-        else
-            value = node[n];
-        
-        const expected = obj[n];
-        
-        if (expected === value)
-            return;
-        
-        if (value != null && typeof value === 'object')
-            match(test, value, expected);
-        else
-            test.strictEqual(value, expected);
-    }
-}
 
