@@ -1,5 +1,6 @@
 
 const parser = require('../lib/parser');
+const geast = require('geast');
 
 exports['parse add'] = function (test) {
     parseBinary(test, '42 + 0', [ 42, '+', 0] );
@@ -66,7 +67,7 @@ function parseBinary(test, text, expected) {
     const node = parser.parse('expression', text);
     const obj = toObj(expected);
     
-    match(test, node, obj);
+    test.deepEqual(geast.toObject(node), obj);
     
     function toObj(obj) {
         if (Array.isArray(obj))
@@ -87,22 +88,6 @@ function parseBinary(test, text, expected) {
             ntype: 'constant',
             value: obj
         }
-    }
-}
-
-function match(test, node, obj) {
-    test.ok(node);
-    
-    for (var n in obj) {
-        test.ok(node[n]);
-        test.equal(typeof node[n], 'function');
-        const value = node[n]();
-        const expected = obj[n];
-        
-        if (typeof value === 'object')
-            match(test, value, expected);
-        else
-            test.strictEqual(value, expected);
     }
 }
 
