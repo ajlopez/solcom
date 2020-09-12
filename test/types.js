@@ -58,3 +58,9 @@ exports['parse bytes type'] = function (test) {
     test.equal(result, 'bytes');
 };
 
+exports['parse fixed type'] = function (test) {
+    const result = parser.parse('type', 'fixed');
+
+    test.equal(result, 'fixed');
+};
+
