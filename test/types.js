@@ -64,3 +64,9 @@ exports['parse fixed type'] = function (test) {
     test.equal(result, 'fixed');
 };
 
+exports['parse ufixed type'] = function (test) {
+    const result = parser.parse('type', 'ufixed');
+
+    test.equal(result, 'ufixed');
+};
+

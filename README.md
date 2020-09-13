@@ -25,6 +25,7 @@ Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP.
 - [Solidity 0.6: You Might Be Sending Ether Incorrectly](https://medium.com/better-programming/solidity-0-6-you-might-be-sending-ether-all-wrong-1e119e1ffc27)
 - [`external` vs `public` best practices](https://ethereum.stackexchange.com/questions/19380/external-vs-public-best-practices)
 - [Arrays and Maps in Solidity](https://medium.com/coinmonks/array-and-map-in-solidity-a579b311d74b)
+- [Solidity Types: Mapping, Conversion, Value & Reference Types Explained](https://www.bitdegree.org/learn/solidity-types)
 
 
 ## To Do
