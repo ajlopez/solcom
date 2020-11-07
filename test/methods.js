@@ -16,6 +16,21 @@ exports['parse empty void method'] = function (test) {
     });
 };
 
+exports['parse payable void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() payable {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        name: 'foo',
+        payable: true,
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
 exports['parse empty public void method'] = function (test) {
     const result = parser.parse('method', 'function foo() public {}');
     
