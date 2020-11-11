@@ -22,7 +22,37 @@ exports['parse payable void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        payable: true,
+        mutability: 'payable',
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
+exports['parse view void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() view {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        name: 'foo',
+        mutability: 'view',
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
+exports['parse pure void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() pure {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        name: 'foo',
+        mutability: 'pure',
         arguments: [],
         body: {
             ntype: 'sequence',
