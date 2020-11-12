@@ -130,6 +130,36 @@ exports['parse implicit public uint method'] = function (test) {
     });
 };
 
+exports['parse empty external void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() external {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        visibility: 'external',
+        name: 'foo',
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
+exports['parse empty internal void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() internal {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        visibility: 'internal',
+        name: 'foo',
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
 exports['parse increment method'] = function (test) {
     const result = parser.parse('method', 'function increment() { counter = counter + 1; }');
     
