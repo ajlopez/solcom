@@ -52,6 +52,7 @@ exports['parse contract with variable and method declarations'] = function (test
                     ntype: 'method',
                     name: 'increment',
                     arguments: [],
+                    modifiers: {},
                     body: {
                         ntype: 'sequence',
                         nodes: [
