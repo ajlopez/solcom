@@ -9,7 +9,7 @@ exports['parse empty void method'] = function (test) {
         ntype: 'method',
         name: 'foo',
         arguments: [],
-        modifiers: {},
+        attributes: {},
         body: {
             ntype: 'sequence',
             nodes: []
@@ -23,7 +23,7 @@ exports['parse payable void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        modifiers: {
+        attributes: {
             mutability: 'payable'         
         },
         arguments: [],
@@ -40,7 +40,7 @@ exports['parse view void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        modifiers: {
+        attributes: {
             mutability: 'view'
         },
         arguments: [],
@@ -57,7 +57,7 @@ exports['parse pure void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        modifiers: {
+        attributes: {
             mutability: 'pure'
         },
         arguments: [],
@@ -73,7 +73,7 @@ exports['parse empty public void method'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        modifiers: {
+        attributes: {
             visibility: 'public'
         },
         name: 'foo',
@@ -91,7 +91,7 @@ exports['parse empty private void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        modifiers: {
+        attributes: {
             visibility: 'private'
         },
         arguments: [],
@@ -107,7 +107,7 @@ exports['parse empty explicit private uint method'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        modifiers: {
+        attributes: {
             visibility: 'private'
         },
         type: 'uint',
@@ -128,7 +128,7 @@ exports['parse implicit public uint method'] = function (test) {
         name: 'foo',
         type: 'uint',
         arguments: [],
-        modifiers: {
+        attributes: {
         },
         body: {
             ntype: 'sequence',
@@ -152,7 +152,7 @@ exports['parse increment method'] = function (test) {
         ntype: 'method',
         name: 'increment',
         arguments: [],
-        modifiers: {
+        attributes: {
         },
         body: {
             ntype: 'sequence',
@@ -186,7 +186,7 @@ exports['parse add method with one argument'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        modifiers: {
+        attributes: {
             visibility: 'public'
         },
         name: 'add',
@@ -229,7 +229,7 @@ exports['parse add method with two arguments'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        modifiers: {
+        attributes: {
             visibility: 'public'
         },
         name: 'add',
@@ -278,7 +278,7 @@ exports['parse method with local variable'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        modifiers: {
+        attributes: {
             visibility: 'public'
         },
         arguments: [],
@@ -301,7 +301,7 @@ exports['parse method with initialized local variable'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        modifiers: {
+        attributes: {
             visibility: 'public'
         },
         arguments: [],
