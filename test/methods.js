@@ -9,6 +9,7 @@ exports['parse empty void method'] = function (test) {
         ntype: 'method',
         name: 'foo',
         arguments: [],
+        attributes: {},
         body: {
             ntype: 'sequence',
             nodes: []
@@ -22,7 +23,9 @@ exports['parse payable void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        mutability: 'payable',
+        attributes: {
+            mutability: 'payable'         
+        },
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -37,7 +40,9 @@ exports['parse view void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        mutability: 'view',
+        attributes: {
+            mutability: 'view'
+        },
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -52,7 +57,9 @@ exports['parse pure void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        mutability: 'pure',
+        attributes: {
+            mutability: 'pure'
+        },
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -66,7 +73,9 @@ exports['parse empty public void method'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        visibility: 'public',
+        attributes: {
+            visibility: 'public'
+        },
         name: 'foo',
         arguments: [],
         body: {
@@ -82,7 +91,9 @@ exports['parse empty private void method'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        visibility: 'private',
+        attributes: {
+            visibility: 'private'
+        },
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -96,7 +107,9 @@ exports['parse empty explicit private uint method'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        visibility: 'private',
+        attributes: {
+            visibility: 'private'
+        },
         type: 'uint',
         name: 'foo',
         arguments: [],
@@ -115,6 +128,8 @@ exports['parse implicit public uint method'] = function (test) {
         name: 'foo',
         type: 'uint',
         arguments: [],
+        attributes: {
+        },
         body: {
             ntype: 'sequence',
             nodes: [
@@ -167,6 +182,8 @@ exports['parse increment method'] = function (test) {
         ntype: 'method',
         name: 'increment',
         arguments: [],
+        attributes: {
+        },
         body: {
             ntype: 'sequence',
             nodes: [
@@ -199,7 +216,9 @@ exports['parse add method with one argument'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        visibility: 'public',
+        attributes: {
+            visibility: 'public'
+        },
         name: 'add',
         arguments: [
             {
@@ -240,7 +259,9 @@ exports['parse add method with two arguments'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
-        visibility: 'public',
+        attributes: {
+            visibility: 'public'
+        },
         name: 'add',
         arguments: [
             {
@@ -287,7 +308,9 @@ exports['parse method with local variable'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        visibility: 'public',
+        attributes: {
+            visibility: 'public'
+        },
         arguments: [],
         body: {
             ntype: 'sequence',
@@ -308,7 +331,9 @@ exports['parse method with initialized local variable'] = function (test) {
     test.deepEqual(geast.toObject(result), {
         ntype: 'method',
         name: 'foo',
-        visibility: 'public',
+        attributes: {
+            visibility: 'public'
+        },
         arguments: [],
         body: {
             ntype: 'sequence',
