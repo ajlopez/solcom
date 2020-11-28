@@ -34,6 +34,17 @@ exports['parse uint private variable declaration'] = function (test) {
     });
 };
 
+exports['parse uint internal variable declaration'] = function (test) {
+    const result = parser.parse('command', 'uint internal counter;');
+    
+    match(test, result, {
+        ntype: 'variable',
+        name: 'counter',
+        visibility: 'internal',
+        type: 'uint'
+    });
+};
+
 exports['parse uint variable declaration and initialization'] = function (test) {
     const result = parser.parse('command', 'uint answer = 42;');
     
