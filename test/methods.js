@@ -102,6 +102,40 @@ exports['parse empty private void method'] = function (test) {
     });
 };
 
+exports['parse empty internal void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() internal {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        name: 'foo',
+        attributes: {
+            visibility: 'internal'
+        },
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
+exports['parse empty external void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() external {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        name: 'foo',
+        attributes: {
+            visibility: 'external'
+        },
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
 exports['parse empty explicit private uint method'] = function (test) {
     const result = parser.parse('method', 'function foo() private returns(uint) {}');
     
