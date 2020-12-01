@@ -12,6 +12,39 @@ exports['parse uint variable declaration'] = function (test) {
     });
 };
 
+exports['parse uint public variable declaration'] = function (test) {
+    const result = parser.parse('command', 'uint public counter;');
+    
+    match(test, result, {
+        ntype: 'variable',
+        name: 'counter',
+        visibility: 'public',
+        type: 'uint'
+    });
+};
+
+exports['parse uint private variable declaration'] = function (test) {
+    const result = parser.parse('command', 'uint private counter;');
+    
+    match(test, result, {
+        ntype: 'variable',
+        name: 'counter',
+        visibility: 'private',
+        type: 'uint'
+    });
+};
+
+exports['parse uint internal variable declaration'] = function (test) {
+    const result = parser.parse('command', 'uint internal counter;');
+    
+    match(test, result, {
+        ntype: 'variable',
+        name: 'counter',
+        visibility: 'internal',
+        type: 'uint'
+    });
+};
+
 exports['parse uint variable declaration and initialization'] = function (test) {
     const result = parser.parse('command', 'uint answer = 42;');
     
