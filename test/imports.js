@@ -20,3 +20,13 @@ exports['parse import with identifier'] = function (test) {
         identifier: 'Path'
     });
 };
+
+exports['parse import with asterisk and identifier'] = function (test) {
+    const result = parser.parse('import', 'import * as Path from "path";');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'import',
+        path: 'path',
+        identifier: 'Path'
+    });
+};
