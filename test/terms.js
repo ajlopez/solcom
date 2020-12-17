@@ -51,6 +51,20 @@ exports['parse name with initial underscore'] = function (test) {
         ntype: 'name', name: '_foo' });
 };
 
+exports['parse name with dollar sign'] = function (test) {
+    const result = parser.parse('name', 'foo$bar');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'name', name: 'foo$bar' });
+};
+
+exports['parse name with dollar sign'] = function (test) {
+    const result = parser.parse('name', '$foo');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'name', name: '$foo' });
+};
+
 exports['parse integer'] = function (test) {
     const result = parser.parse('integer', '42');
     
