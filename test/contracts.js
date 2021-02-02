@@ -15,6 +15,20 @@ exports['parse empty contract'] = function (test) {
     });
 };
 
+exports['parse abstract empty contract'] = function (test) {
+    const result = parser.parse('contract', 'abstract contract Empty {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'contract',
+        name: 'Empty',
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        },
+        abstract: true
+    });
+};
+
 exports['parse empty contract with single inheritance'] = function (test) {
     const result = parser.parse('contract', 'contract Empty is Nothing {}');
     
