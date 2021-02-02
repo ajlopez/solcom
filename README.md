@@ -19,7 +19,7 @@ Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP.
 ## References
 
 - [Solidity Debugger List](http://solidity-debugger.io/#/)
-- [Solidity Grammar in Documentation](https://solidity.readthedocs.io/en/v0.7.1/grammar.html)
+- [Solidity Grammar in Documentation](https://docs.soliditylang.org/en/v0.8.1/grammar.html)
 - [Solidity Grammar](https://github.com/ethereum/solidity/blob/develop/docs/Solidity.g4)
 - [Solidity 0.6.x features: fallback and receive functions](https://solidity.ethereum.org/2020/03/26/fallback-receive-split/)
 - [A brief analysis of the new try/catch functionality in Solidity 0.6](https://forum.openzeppelin.com/t/a-brief-analysis-of-the-new-try-catch-functionality-in-solidity-0-6/2564)

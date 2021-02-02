@@ -15,6 +15,48 @@ exports['parse empty contract'] = function (test) {
     });
 };
 
+exports['parse empty contract with single inheritance'] = function (test) {
+    const result = parser.parse('contract', 'contract Empty is Nothing {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'contract',
+        name: 'Empty',
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        },
+        inheritance: [
+            {
+                ntype: 'name',
+                name: 'Nothing'
+            }
+        ]
+    });
+};
+
+exports['parse empty contract with double inheritance'] = function (test) {
+    const result = parser.parse('contract', 'contract Empty is Nothing, Nothing2 {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'contract',
+        name: 'Empty',
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        },
+        inheritance: [
+            {
+                ntype: 'name',
+                name: 'Nothing'
+            },
+            {
+                ntype: 'name',
+                name: 'Nothing2'
+            }
+        ]
+    });
+};
+
 exports['parse contract with variable declaration'] = function (test) {
     const result = parser.parse('contract', 'contract Counter { uint counter; }');
     
