@@ -37,4 +37,45 @@ exports['parse interface with function'] = function (test) {
     });
 };
 
+exports['parse empty interface with single inheritance'] = function (test) {
+    const result = parser.parse('interface', 'interface Empty is Nothing {}');
     
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'interface',
+        name: 'Empty',
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        },
+        inheritance: [
+            {
+                ntype: 'name',
+                name: 'Nothing'
+            }
+        ]
+    });
+};
+
+exports['parse empty interface with double inheritance'] = function (test) {
+    const result = parser.parse('interface', 'interface Empty is Nothing, Nothing2 {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'interface',
+        name: 'Empty',
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        },
+        inheritance: [
+            {
+                ntype: 'name',
+                name: 'Nothing'
+            },
+            {
+                ntype: 'name',
+                name: 'Nothing2'
+            }
+        ]
+    });
+};
+
