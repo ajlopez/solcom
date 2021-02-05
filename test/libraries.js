@@ -15,3 +15,24 @@ exports['parse empty library'] = function (test) {
     });
 };
 
+exports['parse library with function'] = function (test) {
+    const result = parser.parse('library', 'library Counter { function increment() external; }');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'library',
+        name: 'Counter',
+        body: {
+            ntype: 'sequence',
+            nodes: [
+                {
+                    ntype: 'method',
+                    name: 'increment',
+                    arguments: [],
+                    attributes: {
+                        visibility: 'external'
+                    },
+                }
+            ]
+        }
+    });
+};
