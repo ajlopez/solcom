@@ -110,6 +110,25 @@ exports['parse contract with variable declaration'] = function (test) {
     });
 };
 
+exports['parse contract with event declaration'] = function (test) {
+    const result = parser.parse('contract', 'contract Counter { event EmptyEvent(); }');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'contract',
+        name: 'Counter',
+        body: {
+            ntype: 'sequence',
+            nodes: [
+                {
+                    ntype: 'event',
+                    name: 'EmptyEvent',
+                    arguments: []
+                }
+            ]
+        }
+    });
+};
+
 exports['parse contract with variable and method declarations'] = function (test) {
     const result = parser.parse('contract', 'contract Counter { uint counter; function increment() { counter = counter + 1; } }');
     
