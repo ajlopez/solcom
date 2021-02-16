@@ -70,3 +70,17 @@ exports['parse program with contract with variable declaration'] = function (tes
     });
 };
 
+exports['parse program with simple import'] = function (test) {
+    const result = parser.parse('program', 'import "Foo";');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'sequence',
+        nodes: [
+            {
+                ntype: 'import',
+                path: 'Foo'
+            }
+        ]
+    });
+};
+
