@@ -129,6 +129,29 @@ exports['parse contract with event declaration'] = function (test) {
     });
 };
 
+exports['parse contract with modifier'] = function (test) {
+    const result = parser.parse('contract', 'contract Counter { modifier onlyOwner() {} }');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'contract',
+        name: 'Counter',
+        body: {
+            ntype: 'sequence',
+            nodes: [
+                {
+                    ntype: 'modifier',
+                    name: 'onlyOwner',
+                    arguments: [],
+                    body: {
+                        ntype: 'sequence',
+                        nodes: []
+                    }
+                }
+            ]
+        }
+    });
+};
+
 exports['parse contract with variable and method declarations'] = function (test) {
     const result = parser.parse('contract', 'contract Counter { uint counter; function increment() { counter = counter + 1; } }');
     
