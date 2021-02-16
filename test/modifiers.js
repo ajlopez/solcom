@@ -15,3 +15,23 @@ exports['parse empty modifier'] = function (test) {
         }
     });
 };
+
+exports['parse modifier with one argument'] = function (test) {
+    const result = parser.parse('modifier', 'modifier onlyOwner(address user) {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'modifier',
+        name: 'onlyOwner',
+        arguments: [
+            {
+                ntype: 'argument',
+                name: 'user',
+                type: 'address'
+            }
+        ],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
