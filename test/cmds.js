@@ -159,6 +159,14 @@ exports['parse while command'] = function (test) {
     });
 };
 
+exports['parse underscore command'] = function (test) {
+    const result = parser.parse('command', '_;');
+    
+    test.ok(result);
+    test.equal(result.ntype(), 'name');
+    test.equal(result.name(), '_');
+};
+
 function match(test, node, obj) {
     test.ok(node);
     
