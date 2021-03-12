@@ -68,6 +68,23 @@ exports['parse pure void method'] = function (test) {
     });
 };
 
+exports['parse virtual void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() virtual {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        name: 'foo',
+        attributes: {
+            virtual: true
+        },
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
 exports['parse empty public void method'] = function (test) {
     const result = parser.parse('method', 'function foo() public {}');
     
