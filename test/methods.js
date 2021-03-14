@@ -85,6 +85,24 @@ exports['parse virtual void method'] = function (test) {
     });
 };
 
+// TODO parse override with contract list
+exports['parse override void method'] = function (test) {
+    const result = parser.parse('method', 'function foo() override {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'method',
+        name: 'foo',
+        attributes: {
+            override: true
+        },
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
 exports['parse empty public void method'] = function (test) {
     const result = parser.parse('method', 'function foo() public {}');
     
