@@ -16,3 +16,19 @@ exports['parse empty constructor'] = function (test) {
     });
 };
 
+exports['parse payable constructor'] = function (test) {
+    const result = parser.parse('konstructor', 'constructor() payable {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'constructor',
+        attributes: {
+            mutability: 'payable'         
+        },
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
