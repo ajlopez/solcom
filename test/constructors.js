@@ -32,3 +32,19 @@ exports['parse payable constructor'] = function (test) {
     });
 };
 
+exports['parse empty public constructor'] = function (test) {
+    const result = parser.parse('konstructor', 'constructor() public {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'constructor',
+        attributes: {
+            visibility: 'public'
+        },
+        arguments: [],
+        body: {
+            ntype: 'sequence',
+            nodes: []
+        }
+    });
+};
+
