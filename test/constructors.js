@@ -48,3 +48,38 @@ exports['parse empty public constructor'] = function (test) {
     });
 };
 
+exports['parse constructor with increment body'] = function (test) {
+    const result = parser.parse('konstructor', 'constructor() { counter = counter + 1; }');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'constructor',
+        arguments: [],
+        attributes: {
+        },
+        body: {
+            ntype: 'sequence',
+            nodes: [
+                {
+                    ntype: 'assign',
+                    lefthand: {
+                        ntype: 'name',
+                        name: 'counter'
+                    },
+                    expression: {
+                        ntype: 'binary',
+                        operator: '+',
+                        left: {
+                            ntype: 'name',
+                            name: 'counter'
+                        },
+                        right: {
+                            ntype: 'constant',
+                            value: 1
+                        }
+                    }
+                }
+            ]
+        }
+    });
+};
+
