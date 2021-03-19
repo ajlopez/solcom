@@ -83,3 +83,44 @@ exports['parse constructor with increment body'] = function (test) {
     });
 };
 
+exports['parse constructor with one argument'] = function (test) {
+    const result = parser.parse('konstructor', 'constructor(uint value) public { counter = counter + value; }');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'constructor',
+        attributes: {
+            visibility: 'public'
+        },
+        arguments: [
+            {
+                ntype: 'argument',
+                name: 'value',
+                type: 'uint'
+            }
+        ],
+        body: {
+            ntype: 'sequence',
+            nodes: [
+                {
+                    ntype: 'assign',
+                    lefthand: {
+                        ntype: 'name',
+                        name: 'counter'
+                    },
+                    expression: {
+                        ntype: 'binary',
+                        operator: '+',
+                        left: {
+                            ntype: 'name',
+                            name: 'counter'
+                        },
+                        right: {
+                            ntype: 'name',
+                            name: 'value'
+                        }
+                    }
+                }
+            ]
+        }
+    });
+};
