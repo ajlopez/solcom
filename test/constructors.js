@@ -124,3 +124,51 @@ exports['parse constructor with one argument'] = function (test) {
         }
     });
 };
+
+exports['parse constructor with two arguments'] = function (test) {
+    const result = parser.parse('konstructor', 'constructor(uint value, uint value2) public { counter = counter + value; }');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'constructor',
+        attributes: {
+            visibility: 'public'
+        },
+        arguments: [
+            {
+                ntype: 'argument',
+                name: 'value',
+                type: 'uint'
+            },
+            {
+                ntype: 'argument',
+                name: 'value2',
+                type: 'uint'
+            }
+        ],
+        body: {
+            ntype: 'sequence',
+            nodes: [
+                {
+                    ntype: 'assign',
+                    lefthand: {
+                        ntype: 'name',
+                        name: 'counter'
+                    },
+                    expression: {
+                        ntype: 'binary',
+                        operator: '+',
+                        left: {
+                            ntype: 'name',
+                            name: 'counter'
+                        },
+                        right: {
+                            ntype: 'name',
+                            name: 'value'
+                        }
+                    }
+                }
+            ]
+        }
+    });
+};
+
