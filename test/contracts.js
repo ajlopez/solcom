@@ -201,3 +201,51 @@ exports['parse contract with variable and method declarations'] = function (test
     });
 };
 
+exports['parse contract with variable and constructor declarations'] = function (test) {
+    const result = parser.parse('contract', 'contract Counter { uint counter; constructor() { counter = counter + 1; } }');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'contract',
+        name: 'Counter',
+        body: {
+            ntype: 'sequence',
+            nodes: [
+                {
+                    ntype: 'variable',
+                    name: 'counter',
+                    type: 'uint'
+                },
+                {
+                    ntype: 'constructor',
+                    arguments: [],
+                    attributes: {},
+                    body: {
+                        ntype: 'sequence',
+                        nodes: [
+                            {
+                                ntype: 'assign',
+                                lefthand: {
+                                    ntype: 'name',
+                                    name: 'counter'
+                                },
+                                expression: {
+                                    ntype: 'binary',
+                                    operator: '+',
+                                    left: {
+                                        ntype: 'name',
+                                        name: 'counter'
+                                    },
+                                    right: {
+                                        ntype: 'constant',
+                                        value: 1
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    });
+};
+
