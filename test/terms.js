@@ -95,3 +95,21 @@ exports['parse indexed term'] = function (test) {
     });
 };
 
+exports['parse simple call term'] = function (test) {
+    const result = parser.parse('term', 'a(10)');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'call',
+        target: {
+            ntype: 'name',
+            name: 'a'
+        },
+        arguments: [
+            {
+                ntype: 'constant',
+                value: 10
+            }
+        ]
+    });
+};
+
