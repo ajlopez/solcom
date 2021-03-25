@@ -95,7 +95,7 @@ exports['parse indexed term'] = function (test) {
     });
 };
 
-exports['parse simple call term'] = function (test) {
+exports['parse simple call term with one argument'] = function (test) {
     const result = parser.parse('term', 'a(10)');
     
     test.deepEqual(geast.toObject(result), {
@@ -113,3 +113,38 @@ exports['parse simple call term'] = function (test) {
     });
 };
 
+exports['parse simple call term with two arguments'] = function (test) {
+    const result = parser.parse('term', 'a(10,20)');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'call',
+        target: {
+            ntype: 'name',
+            name: 'a'
+        },
+        arguments: [
+            {
+                ntype: 'constant',
+                value: 10
+            },
+            {
+                ntype: 'constant',
+                value: 20
+            }
+        ]
+    });
+};
+
+exports['parse simple call term with no argument'] = function (test) {
+    const result = parser.parse('term', 'a()');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'call',
+        target: {
+            ntype: 'name',
+            name: 'a'
+        },
+        arguments: [
+        ]
+    });
+};
