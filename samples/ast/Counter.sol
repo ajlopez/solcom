@@ -1,16 +1,19 @@
 
 contract Counter {
     uint counter;
+    
+    constructor() public {
+    }
         
-    function getCounter() returns(uint) {
+    function getCounter() public view returns(uint){
         return counter;
     }
     
-    function increment() {
+    function increment() public {
         counter = counter + 1;
     }
         
-    function add(uint value) {
+    function add(uint value) public {
         counter = counter + value;
     }
 }
