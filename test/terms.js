@@ -72,6 +72,13 @@ exports['parse integer'] = function (test) {
         ntype: 'constant', value: 42 });
 };
 
+exports['parse integer as term'] = function (test) {
+    const result = parser.parse('term', '42');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'constant', value: 42 });
+};
+
 exports['parse string'] = function (test) {
     const result = parser.parse('string', '"foo"');
     
@@ -84,6 +91,22 @@ exports['parse string as term'] = function (test) {
     
     test.deepEqual(geast.toObject(result), {
         ntype: 'constant', value: 'foo' });
+};
+
+exports['parse property'] = function (test) {
+    const result = parser.parse('term', 'foo.bar');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'property',
+        expression: {
+            ntype: 'name',
+            name: 'foo'
+        },
+        name: {
+            ntype: 'name',
+            name: 'bar'
+        }
+    });
 };
 
 exports['parse indexed term'] = function (test) {
