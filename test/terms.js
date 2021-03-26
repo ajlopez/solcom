@@ -79,6 +79,13 @@ exports['parse string'] = function (test) {
         ntype: 'constant', value: 'foo' });
 };
 
+exports['parse string as term'] = function (test) {
+    const result = parser.parse('term', '"foo"');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'constant', value: 'foo' });
+};
+
 exports['parse indexed term'] = function (test) {
     const result = parser.parse('term', 'a[10]');
     
