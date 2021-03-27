@@ -63,6 +63,21 @@ exports['precedence in arithmetic operators'] = function (test) {
     parseBinary(test, '1 / 2 - 3', [ [ 1, '/', 2 ], '-', 3 ] );
 };
 
+exports['parse preincrement'] = function (test) {
+    const node = parser.parse('expression', '++a');
+    
+    test.deepEqual(geast.toObject(node),
+        {
+            ntype: 'unary',
+            operator: '++',
+            expression: {
+                ntype: 'name',
+                name: 'a'
+            }
+        }
+    );
+}
+
 function parseBinary(test, text, expected) {
     const node = parser.parse('expression', text);
     const obj = toObj(expected);
