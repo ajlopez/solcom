@@ -108,6 +108,36 @@ exports['parse negative term'] = function (test) {
     );
 }
 
+exports['parse postincrement'] = function (test) {
+    const node = parser.parse('expression', 'a++');
+    
+    test.deepEqual(geast.toObject(node),
+        {
+            ntype: 'unary',
+            operator: '_++',
+            expression: {
+                ntype: 'name',
+                name: 'a'
+            }
+        }
+    );
+}
+
+exports['parse postdecrement'] = function (test) {
+    const node = parser.parse('expression', 'a--');
+    
+    test.deepEqual(geast.toObject(node),
+        {
+            ntype: 'unary',
+            operator: '_--',
+            expression: {
+                ntype: 'name',
+                name: 'a'
+            }
+        }
+    );
+}
+
 function parseBinary(test, text, expected) {
     const node = parser.parse('expression', text);
     const obj = toObj(expected);
