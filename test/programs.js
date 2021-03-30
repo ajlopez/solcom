@@ -84,3 +84,21 @@ exports['parse program with simple import'] = function (test) {
     });
 };
 
+exports['parse program with empty interface'] = function (test) {
+    const result = parser.parse('program', 'interface Empty {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'sequence',
+        nodes: [
+            {
+                ntype: 'interface',
+                name: 'Empty',
+                body: {
+                    ntype: 'sequence',
+                    nodes: []
+                }
+            }
+        ]
+    });
+};
+
