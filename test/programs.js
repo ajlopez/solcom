@@ -102,3 +102,29 @@ exports['parse program with empty interface'] = function (test) {
     });
 };
 
+exports['parse program with struct with two members'] = function (test) {
+    const result = parser.parse('program', 'struct Customer { string name; uint256 balance; }');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'sequence',
+        nodes: [
+            {
+                ntype: 'struct',
+                name: 'Customer',
+                members: [
+                    {
+                        ntype: 'member',
+                        type: 'string',
+                        name: 'name'
+                    },
+                    {
+                        ntype: 'member',
+                        type: 'uint256',
+                        name: 'balance'
+                    }
+                ]
+            }
+        ]
+    });
+};
+
