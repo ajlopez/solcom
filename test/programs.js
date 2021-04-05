@@ -147,3 +147,20 @@ exports['parse program with uint constant declaration'] = function (test) {
     });
 };
 
+exports['parse program with empty library'] = function (test) {
+    const result = parser.parse('program', 'library Empty {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'sequence',
+        nodes: [
+            {
+                ntype: 'library',
+                name: 'Empty',
+                body: {
+                    ntype: 'sequence',
+                    nodes: []
+                }
+            }
+        ]
+    });
+};
