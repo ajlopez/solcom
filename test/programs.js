@@ -164,3 +164,24 @@ exports['parse program with empty library'] = function (test) {
         ]
     });
 };
+
+exports['parse program with empty void function'] = function (test) {
+    const result = parser.parse('program', 'function foo() {}');
+    
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'sequence',
+        nodes: [
+            {
+                ntype: 'method',
+                name: 'foo',
+                arguments: [],
+                attributes: {},
+                body: {
+                    ntype: 'sequence',
+                    nodes: []
+                }
+            }
+        ]
+    });
+};
+
