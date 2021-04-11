@@ -25,7 +25,7 @@ exports['parse library with function'] = function (test) {
             ntype: 'sequence',
             nodes: [
                 {
-                    ntype: 'method',
+                    ntype: 'function',
                     name: 'increment',
                     arguments: [],
                     attributes: {

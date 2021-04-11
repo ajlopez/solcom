@@ -2,11 +2,11 @@
 const parser = require('../lib/parser');
 const geast = require('geast');
 
-exports['parse empty void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() {}');
+exports['parse empty void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         arguments: [],
         attributes: {},
@@ -17,11 +17,11 @@ exports['parse empty void method'] = function (test) {
     });
 };
 
-exports['parse payable void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() payable {}');
+exports['parse payable void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() payable {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             mutability: 'payable'         
@@ -34,11 +34,11 @@ exports['parse payable void method'] = function (test) {
     });
 };
 
-exports['parse view void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() view {}');
+exports['parse view void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() view {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             mutability: 'view'
@@ -51,11 +51,11 @@ exports['parse view void method'] = function (test) {
     });
 };
 
-exports['parse pure void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() pure {}');
+exports['parse pure void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() pure {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             mutability: 'pure'
@@ -68,11 +68,11 @@ exports['parse pure void method'] = function (test) {
     });
 };
 
-exports['parse virtual void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() virtual {}');
+exports['parse virtual void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() virtual {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             virtual: true
@@ -86,11 +86,11 @@ exports['parse virtual void method'] = function (test) {
 };
 
 // TODO parse override with contract list
-exports['parse override void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() override {}');
+exports['parse override void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() override {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             override: true
@@ -103,11 +103,11 @@ exports['parse override void method'] = function (test) {
     });
 };
 
-exports['parse empty public void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() public {}');
+exports['parse empty public void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() public {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         attributes: {
             visibility: 'public'
         },
@@ -120,11 +120,11 @@ exports['parse empty public void method'] = function (test) {
     });
 };
 
-exports['parse empty private void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() private {}');
+exports['parse empty private void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() private {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             visibility: 'private'
@@ -137,11 +137,11 @@ exports['parse empty private void method'] = function (test) {
     });
 };
 
-exports['parse empty internal void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() internal {}');
+exports['parse empty internal void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() internal {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             visibility: 'internal'
@@ -154,11 +154,11 @@ exports['parse empty internal void method'] = function (test) {
     });
 };
 
-exports['parse empty external void method'] = function (test) {
-    const result = parser.parse('method', 'function foo() external {}');
+exports['parse empty external void function'] = function (test) {
+    const result = parser.parse('function', 'function foo() external {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             visibility: 'external'
@@ -171,11 +171,11 @@ exports['parse empty external void method'] = function (test) {
     });
 };
 
-exports['parse empty explicit private uint method'] = function (test) {
-    const result = parser.parse('method', 'function foo() private returns(uint) {}');
+exports['parse empty explicit private uint function'] = function (test) {
+    const result = parser.parse('function', 'function foo() private returns(uint) {}');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         attributes: {
             visibility: 'private'
         },
@@ -189,11 +189,11 @@ exports['parse empty explicit private uint method'] = function (test) {
     });
 };
 
-exports['parse implicit public uint method'] = function (test) {
-    const result = parser.parse('method', 'function foo() returns (uint) { return 42; }');
+exports['parse implicit public uint function'] = function (test) {
+    const result = parser.parse('function', 'function foo() returns (uint) { return 42; }');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         type: 'uint',
         arguments: [],
@@ -214,11 +214,11 @@ exports['parse implicit public uint method'] = function (test) {
     });
 };
 
-exports['parse increment method'] = function (test) {
-    const result = parser.parse('method', 'function increment() { counter = counter + 1; }');
+exports['parse increment function'] = function (test) {
+    const result = parser.parse('function', 'function increment() { counter = counter + 1; }');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'increment',
         arguments: [],
         attributes: {
@@ -250,11 +250,11 @@ exports['parse increment method'] = function (test) {
     });
 };
 
-exports['parse add method with one argument'] = function (test) {
-    const result = parser.parse('method', 'function add(uint value) public { counter = counter + value; }');
+exports['parse add function with one argument'] = function (test) {
+    const result = parser.parse('function', 'function add(uint value) public { counter = counter + value; }');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         attributes: {
             visibility: 'public'
         },
@@ -293,11 +293,11 @@ exports['parse add method with one argument'] = function (test) {
     });
 };
 
-exports['parse add method with two arguments'] = function (test) {
-    const result = parser.parse('method', 'function add(uint value, uint value2) public { counter = counter + value; }');
+exports['parse add function with two arguments'] = function (test) {
+    const result = parser.parse('function', 'function add(uint value, uint value2) public { counter = counter + value; }');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         attributes: {
             visibility: 'public'
         },
@@ -341,11 +341,11 @@ exports['parse add method with two arguments'] = function (test) {
     });
 };
 
-exports['parse method with local variable'] = function (test) {
-    const result = parser.parse('method', 'function foo() public { uint k; }');
+exports['parse function with local variable'] = function (test) {
+    const result = parser.parse('function', 'function foo() public { uint k; }');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             visibility: 'public'
@@ -364,11 +364,11 @@ exports['parse method with local variable'] = function (test) {
     });
 };
 
-exports['parse method with initialized local variable'] = function (test) {
-    const result = parser.parse('method', 'function foo() public { uint k = 1; }');
+exports['parse function with initialized local variable'] = function (test) {
+    const result = parser.parse('function', 'function foo() public { uint k = 1; }');
     
     test.deepEqual(geast.toObject(result), {
-        ntype: 'method',
+        ntype: 'function',
         name: 'foo',
         attributes: {
             visibility: 'public'

@@ -152,7 +152,7 @@ exports['parse contract with modifier'] = function (test) {
     });
 };
 
-exports['parse contract with variable and method declarations'] = function (test) {
+exports['parse contract with variable and function declarations'] = function (test) {
     const result = parser.parse('contract', 'contract Counter { uint counter; function increment() { counter = counter + 1; } }');
     
     test.deepEqual(geast.toObject(result), {
@@ -167,7 +167,7 @@ exports['parse contract with variable and method declarations'] = function (test
                     type: 'uint'
                 },
                 {
-                    ntype: 'method',
+                    ntype: 'function',
                     name: 'increment',
                     arguments: [],
                     attributes: {},

@@ -172,7 +172,7 @@ exports['parse program with empty void function'] = function (test) {
         ntype: 'sequence',
         nodes: [
             {
-                ntype: 'method',
+                ntype: 'function',
                 name: 'foo',
                 arguments: [],
                 attributes: {},
