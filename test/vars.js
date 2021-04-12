@@ -109,6 +109,20 @@ exports['parse uint fixed size array variable declaration'] = function (test) {
     });
 };
 
+exports['parse mapping variable declaration'] = function (test) {
+    const result = parser.parse('command', 'mapping(address => uint) balances;');
+    
+    match(test, result, {
+        ntype: 'variable',
+        name: 'balances',
+        type: {
+            ntype: 'mapping',
+            key: 'address',
+            value: 'uint'
+        }
+    });
+};
+
 exports['parse address variable declaration'] = function (test) {
     const result = parser.parse('command', 'address counter;');
     
