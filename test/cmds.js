@@ -1,5 +1,6 @@
 
 const parser = require('../lib/parser');
+const geast = require('geast');
 
 exports['parse break command'] = function (test) {
     const result = parser.parse('command', 'break;');
@@ -192,3 +193,57 @@ function match(test, node, obj) {
     }
 }
 
+exports['parse assign command to simple variable'] = function (test) {
+    const result = parser.parse('command', 'k = k + 1;');
+
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'assign',
+        lefthand: {
+            ntype: 'name',
+            name: 'k'
+        },
+        expression: {
+            ntype: 'binary',
+            operator: '+',
+            left: {
+                ntype: 'name',
+                name: 'k'
+            },
+            right: {
+                ntype: 'constant',
+                value: 1
+            }
+        }
+    });
+};
+
+exports['parse assign command to indexed variable'] = function (test) {
+    const result = parser.parse('command', 'a[2] = k + 1;');
+
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'assign',
+        lefthand: {
+            ntype: 'indexed',
+            target: {
+                ntype: 'name',
+                name: 'a'
+            },
+            index: {
+                ntype: 'constant',
+                value: 2
+            }
+        },
+        expression: {
+            ntype: 'binary',
+            operator: '+',
+            left: {
+                ntype: 'name',
+                name: 'k'
+            },
+            right: {
+                ntype: 'constant',
+                value: 1
+            }
+        }
+    });
+};
