@@ -247,3 +247,32 @@ exports['parse assign command to indexed variable'] = function (test) {
         }
     });
 };
+
+exports['parse assign command to property variable'] = function (test) {
+    const result = parser.parse('command', 'a.b = k + 1;');
+
+    test.deepEqual(geast.toObject(result), {
+        ntype: 'assign',
+        lefthand: {
+            ntype: 'property',
+            expression: {
+                ntype: 'name',
+                name: 'a'
+            },
+            name: 'b'
+        },
+        expression: {
+            ntype: 'binary',
+            operator: '+',
+            left: {
+                ntype: 'name',
+                name: 'k'
+            },
+            right: {
+                ntype: 'constant',
+                value: 1
+            }
+        }
+    });
+};
+
