@@ -4,6 +4,8 @@ Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP.
 
 ## Design
 
+TBD
+
 ### Types
 
 - `int`
@@ -11,6 +13,15 @@ Solidity compiler. Generates bytecodes for Ethereum Virtual Machine. WIP.
 - `bool`
 - `string`
 - `address`
+
+TBD
+
+## Posts
+
+- [A Solidity Compiler: Introduction](https://angeljavalopez.medium.com/a-solidity-compiler-introduction-816c3dcec442)
+- [Gepars: a generic parser](https://angeljavalopez.medium.com/gepars-a-generic-parser-f5795bd16f09)
+- [Geast: a generic Abstract Syntax Tree](https://angeljavalopez.medium.com/geast-a-generic-abstract-syntax-tree-c7feb681b6b5)
+- [Gelex: a generic lexer in JavaScript](https://angeljavalopez.medium.com/gelex-a-generic-lexer-in-javascript-4b87b228bf2a)
 
 ## Previous Work
 
