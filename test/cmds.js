@@ -164,8 +164,7 @@ exports['parse underscore command'] = function (test) {
     const result = parser.parse('command', '_;');
     
     test.ok(result);
-    test.equal(result.ntype(), 'name');
-    test.equal(result.name(), '_');
+    test.equal(result.ntype(), 'underscore');
 };
 
 function match(test, node, obj) {
